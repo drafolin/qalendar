@@ -1,23 +1,26 @@
 {
-  "name": "qalendar",
+  "name": "@drafolin/qalendar",
   "description": "Event calendar and date picker for Vue 3",
   "version": "3.8.1",
-  "homepage": "https://tomosterlund.github.io/qalendar/",
+  "homepage": "https://drafolin.github.io/qalendar/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tomosterlund/qalendar"
+    "url": "https://github.com/drafolin/qalendar"
   },
   "bugs": {
-    "url": "https://github.com/tomosterlund/qalendar/issues"
+    "url": "https://github.com/drafolin/qalendar/issues"
   },
   "author": {
-    "name": "Tom Osterlund"
+    "name": "Dråfølin"
   },
   "contributors": [
     {
       "name": "Felix Scholze",
       "url": "webshaped.de",
       "email": "felix@webshaped.de"
+    },
+    {
+      "name": "Tom Osterlund"
     }
   ],
   "engines": {
@@ -52,7 +55,7 @@
     ".": {
       "import": "./dist/qalendar.es.js",
       "require": "./dist/qalendar.umd.js",
-      "types": "./dist/src/index.d.ts",
+      "types": "./dist/src/index.d.ts"
     },
     "./dist/style.css": {
       "import": "./dist/style.css",
