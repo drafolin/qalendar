@@ -213,7 +213,7 @@ export default defineComponent({
     height: 4px;
     border-radius: 50%;
     padding: 1px;
-    margin-right: 1px;
+    margin: 0 1px;
   }
 
   &.is-draggable {

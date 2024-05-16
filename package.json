@@ -1,7 +1,7 @@
 {
   "name": "@drafolin/qalendar",
   "description": "Event calendar and date picker for Vue 3",
-  "version": "3.9.0",
+  "version": "3.9.1",
   "homepage": "https://drafolin.github.io/qalendar/",
   "repository": {
     "type": "git",

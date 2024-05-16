@@ -180,6 +180,7 @@ export default defineComponent({
   align-items: center;
   border-right: var(--qalendar-border-gray-thin);
   border-bottom: var(--qalendar-border-gray-thin);
+  min-height: 2.5em;
 
   @include mixins.dark-mode {
     border-color: var(--qalendar-dark-mode-line-color);
@@ -220,6 +221,9 @@ export default defineComponent({
   .calendar-month__day-date {
     font-size: var(--qalendar-font-xs);
     color: var(--qalendar-gray-quite-dark);
+    aspect-ratio: 1/1;
+    padding: .5em;
+    text-align: center;
 
     &:first-child {
       margin-top: 6px;
@@ -255,11 +259,6 @@ export default defineComponent({
       background-color: var(--qalendar-theme-color);
       color: #fff;
       border-radius: 50%;
-      padding: 4px 6px;
-
-      .qalendar-is-small & {
-        padding: 2px 4px;
-      }
     }
   }
 }
