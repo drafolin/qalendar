@@ -1,42 +1,26 @@
 <template>
-  <div
-    v-if="config.isSmall"
-    class="calendar-month__event"
-  />
+  <template v-if="config.isSmall">
+    <slot name="eventIcon" :event-data="calendarEvent">
+      <div class="calendar-month__event" />
+    </slot>
+  </template>
 
   <template v-else>
-    <div
-      v-if="isCustomEvent"
-      :id="elementId"
-      class="is-event"
-      data-ref="custom-event"
-      :class="{ 'is-draggable': elementDraggableAttribute }"
-      :draggable="elementDraggableAttribute"
-      @dragstart="handleDragStart"
-      @click="handleClickOnEvent"
-    >
-      <slot
-        name="monthEvent"
-        :event-data="calendarEvent"
-      />
+    <div v-if="isCustomEvent" :id="elementId" class="is-event" data-ref="custom-event"
+      :class="{ 'is-draggable': elementDraggableAttribute }" :draggable="elementDraggableAttribute"
+      @dragstart="handleDragStart" @click="handleClickOnEvent">
+      <slot name="monthEvent" :event-data="calendarEvent" />
     </div>
 
-    <div
-      v-else
-      :id="elementId"
-      data-ref="default-event"
-      class="calendar-month__event is-event"
-      :class="{ 'is-draggable': elementDraggableAttribute }"
-      :draggable="elementDraggableAttribute"
-      @dragstart="handleDragStart"
-      @click="handleClickOnEvent"
-    >
-      <span class="calendar-month__event-color" />
+    <div v-else :id="elementId" data-ref="default-event" class="calendar-month__event is-event"
+      :class="{ 'is-draggable': elementDraggableAttribute }" :draggable="elementDraggableAttribute"
+      @dragstart="handleDragStart" @click="handleClickOnEvent">
 
-      <span
-        v-if="eventTimeStart && !calendarEvent.originalEvent"
-        class="calendar-month__event-time"
-      >
+      <slot name="eventIcon" :event-data="calendarEvent">
+        <span class="calendar-month__event-color" />
+      </slot>
+
+      <span v-if="eventTimeStart && !calendarEvent.originalEvent" class="calendar-month__event-time">
         {{ eventTimeStart }}
       </span>
 

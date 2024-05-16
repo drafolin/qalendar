@@ -1,65 +1,44 @@
 <template>
-  <div
-    class="app-container"
-    :class="'layout-has-' + layout"
-  >
+  <div class="app-container" :class="'layout-has-' + layout">
     <DevSidebar v-if="layout === 'sidebar'" />
 
     <DevHeader v-if="layout === 'header'" />
 
     <main class="is-light-mode">
-      <Qalendar
-        :key="config.locale + config.week.nDays"
-        :selected-date="new Date()"
-        :config="config"
-        :events="events"
-        :is-loading="isLoading"
-        @event-was-clicked="reactToEvent"
-        @updated-period="updatedPeriod"
-        @updated-mode="updatedPeriod"
-        @event-was-resized="reactToEvent"
-        @edit-event="editEvent"
-        @delete-event="deleteEvent"
-        @day-was-clicked="reactToEvent"
-        @date-was-clicked="reactToEvent"
-        @datetime-was-clicked="reactToEvent"
-        @event-was-dragged="handleEventWasDragged"
-        @interval-was-clicked="handleIntervalWasClicked"
-      >
-        <template #monthEvent="{eventData}">
+      <Qalendar :key="config.locale + config.week.nDays" :selected-date="new Date()" :config="config" :events="events"
+        :is-loading="isLoading" @event-was-clicked="reactToEvent" @updated-period="updatedPeriod"
+        @updated-mode="updatedPeriod" @event-was-resized="reactToEvent" @edit-event="editEvent"
+        @delete-event="deleteEvent" @day-was-clicked="reactToEvent" @date-was-clicked="reactToEvent"
+        @datetime-was-clicked="reactToEvent" @event-was-dragged="handleEventWasDragged"
+        @interval-was-clicked="handleIntervalWasClicked">
+        <template #monthEvent="{ eventData }">
           {{ eventData.title }}
         </template>
         <template #customCurrentTime>
-          <div
-            :style="{
-              height: '3px',
+          <div :style="{
+            height: '3px',
+            backgroundColor: 'cornflowerblue',
+            position: 'relative',
+          }">
+            <div :style="{
+              position: 'absolute',
+              left: '-7px',
+              top: '-6px',
+              height: '15px',
+              width: '15px',
               backgroundColor: 'cornflowerblue',
-              position: 'relative',
-            }"
-          >
-            <div
-              :style="{
-                position: 'absolute',
-                left: '-7px',
-                top: '-6px',
-                height: '15px',
-                width: '15px',
-                backgroundColor: 'cornflowerblue',
-                borderRadius: '50%',
-              }"
-            />
+              borderRadius: '50%',
+            }" />
           </div>
         </template>
 
         <template #weekDayEvent="eventProps">
-          <div :style="{ backgroundColor: 'cornflowerblue', color: '#fff', width: '100%', height: '100%', overflow: 'hidden' }">
+          <div
+            :style="{ backgroundColor: 'cornflowerblue', color: '#fff', width: '100%', height: '100%', overflow: 'hidden' }">
             {{ eventProps.eventData.title }}
 
             <div>
-              <input
-                id="checkox-select-time"
-                type="checkbox"
-              >
+              <input id="checkox-select-time" type="checkbox">
 
               <label for="checkox-select-time">
                 Select time slot
@@ -69,19 +48,13 @@
         </template>
 
         <template #eventDialog="props">
-          <div
-            v-if="props.eventDialogData && props.eventDialogData.title"
-            :style="{ padding: '16px' }"
-          >
+          <div v-if="props.eventDialogData && props.eventDialogData.title" :style="{ padding: '16px' }">
             <div :style="{ marginBottom: '8px' }">
               Edit event
             </div>
 
-            <input
-              v-model="eventDialogForm.title"
-              type="text"
-              :style="{ width: '90%', padding: '8px', marginBottom: '8px' }"
-            >
+            <input v-model="eventDialogForm.title" type="text"
+              :style="{ width: '90%', padding: '8px', marginBottom: '8px' }">
 
             <button @click="props.closeEventDialog">
               Finished!
@@ -89,20 +62,21 @@
           </div>
         </template>
 
-<!--        <template #dayCell="{dayData}">-->
-<!--          <div>-->
-<!--            <div> {{ dayData.dateTimeString.substring(8, 10) }}</div>-->
-<!--            <div> {{ dayData.events.length }} events</div>-->
-<!--          </div>-->
-<!--        </template>-->
+        <!-- <template #eventIcon="props"> -->
+        <!--   <span>w</span> -->
+        <!-- </template> -->
+
+        <!--        <template #dayCell="{dayData}">-->
+        <!--          <div>-->
+        <!--            <div> {{ dayData.dateTimeString.substring(8, 10) }}</div>-->
+        <!--            <div> {{ dayData.events.length }} events</div>-->
+        <!--          </div>-->
+        <!--        </template>-->
       </Qalendar>
     </main>
 
-    <DevToolbar
-      @selected-locale="config.locale = $event"
-      @selected-layout="layout = $event"
-      @selected-n-days="config.week!.nDays = $event"
-    />
+    <DevToolbar @selected-locale="config.locale = $event" @selected-layout="layout = $event"
+      @selected-n-days="config.week!.nDays = $event" />
   </div>
 </template>
 
