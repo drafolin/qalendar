@@ -245,6 +245,7 @@ export default defineComponent({
       display: flex;
       flex-flow: row;
       justify-content: center;
+      align-items: center;
     }
 
     .calendar-month__weekday-more {
