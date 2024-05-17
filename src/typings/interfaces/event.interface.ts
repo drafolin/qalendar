@@ -16,6 +16,7 @@ export interface eventInterface {
   id: eventId;
   title?: string;
   time: { start: string; end: string }; // YYYY-MM-DD hh:mm
+  url?: string;
   description?: string;
   topic?: string;
   location?: string; // Name of the event location

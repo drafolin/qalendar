@@ -19,7 +19,13 @@
           <slot name="eventIcon" :event-data="calendarEvent">
             <div class="event-flyout__color-icon" :style="{ backgroundColor: eventBackgroundColor }" />
           </slot>
-          {{ calendarEvent.title }}
+          <a v-if="calendarEvent.url" :href="calendarEvent.url">
+            {{ calendarEvent.title }}
+          </a>
+
+          <span v-else>
+            {{ calendarEvent.title }}
+          </span>
         </div>
 
         <div v-if="calendarEvent.time" class="event-flyout__row is-time">
@@ -29,6 +35,13 @@
         <div v-if="calendarEvent.location" class="event-flyout__row is-location">
           <font-awesome-icon :icon="icons.location" />
           {{ calendarEvent.location }}
+        </div>
+
+        <div v-if="calendarEvent.url" class="event-flyout__row is-url">
+          <font-awesome-icon :icon="icons.globe" />
+          <a :href="calendarEvent.url">
+            {{ calendarEvent.url }}
+          </a>
         </div>
 
         <div v-if="calendarEvent.with" class="event-flyout__row is-with">
@@ -67,6 +80,7 @@ import {
   faTrashAlt,
   faUser,
 } from '@fortawesome/free-regular-svg-icons';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import type { configInterface } from '../../typings/config.interface';
 import Time from '../../helpers/Time';
@@ -117,6 +131,7 @@ export default defineComponent({
         times: faTimes,
         topic: faQuestionCircle,
         location: faMapMarkerAlt,
+        globe: faGlobe
       },
       calendarEvent: this.calendarEventProp,
       flyoutWidth: EVENT_FLYOUT_WIDTH + 'px',
@@ -408,11 +423,21 @@ export default defineComponent({
     .is-not-editable & {
       max-width: 90%;
     }
+
+    a {
+      color: unset;
+    }
   }
 
   .is-time {
     font-size: var(--qalendar-font-s);
     margin-bottom: 0.75em;
+  }
+
+  .is-url {
+    a {
+      color: unset;
+    }
   }
 }
 </style>
