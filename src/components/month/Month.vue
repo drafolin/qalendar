@@ -40,6 +40,10 @@
       <template #eventIcon="p">
         <slot :event-data="p.eventData" name="eventIcon" />
       </template>
+
+      <template #link="p">
+        <slot name="link" :href="p.href" :text="p.text" />
+      </template>
     </EventFlyout>
   </div>
 </template>

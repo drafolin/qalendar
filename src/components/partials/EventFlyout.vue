@@ -19,9 +19,10 @@
           <slot name="eventIcon" :event-data="calendarEvent">
             <div class="event-flyout__color-icon" :style="{ backgroundColor: eventBackgroundColor }" />
           </slot>
-          <a v-if="calendarEvent.url" :href="calendarEvent.url">
-            {{ calendarEvent.title }}
-          </a>
+
+          <template v-if="calendarEvent.url">
+            <slot name="link" :href="calendarEvent.url" :text="calendarEvent.title" />
+          </template>
 
           <span v-else>
             {{ calendarEvent.title }}
@@ -39,9 +40,7 @@
 
         <div v-if="calendarEvent.url" class="event-flyout__row is-url">
           <font-awesome-icon :icon="icons.globe" />
-          <a :href="calendarEvent.url">
-            {{ calendarEvent.url }}
-          </a>
+          <slot name="link" :href="calendarEvent.url" :text="calendarEvent.url" />
         </div>
 
         <div v-if="calendarEvent.with" class="event-flyout__row is-with">

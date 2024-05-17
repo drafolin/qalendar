@@ -1,5 +1,5 @@
 import type { modeType } from "./types";
-import {WEEK_START_DAY} from "../helpers/Time";
+import { WEEK_START_DAY } from "../helpers/Time";
 
 export enum DAY_TIME_POINT {
   MIDNIGHT = 0,
@@ -60,7 +60,7 @@ export interface configInterface {
     colorSchemes?: colorSchemes;
   };
   defaultMode?: modeType;
-  disableModes?: ('week'|'month'|string)[];
+  disableModes?: ('week' | 'month' | string)[];
   isSilent?: boolean;
   dayIntervals?: dayIntervalsType;
   eventDialog?: {
@@ -74,7 +74,7 @@ export interface configInterface {
   }
   showCurrentTime?: boolean;
 
-  month?:{
+  month?: {
     // Hide the days of the next month and previous month in calendar to enhance the appearance
     showTrailingAndLeadingDates?: boolean,
     showEventsOnMobileView?: boolean,

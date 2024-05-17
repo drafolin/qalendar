@@ -56,6 +56,15 @@
         <template #eventIcon="p">
           <slot :event-data="p.eventData" name="eventIcon" />
         </template>
+
+
+        <template #link="p">
+          <slot name="link" :href="p.href" :text="p.text">
+            <a :href="p.href">
+              {{ p.text }}
+            </a>
+          </slot>
+        </template>
       </Month>
     </div>
   </div>
