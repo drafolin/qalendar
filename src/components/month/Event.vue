@@ -144,8 +144,11 @@ export default defineComponent({
       }
 
       if (this.calendarEvent?.color) {
-        return (this.eventBackgroundColor =
-          this.colors[this.calendarEvent.color]);
+
+        return (this.eventBackgroundColor = (
+        this.calendarEvent.color in this.colors?
+        this.colors[this.calendarEvent.color] :
+        this.calendarEvent.color))
       }
 
       return (this.eventBackgroundColor = this.colors.blue);

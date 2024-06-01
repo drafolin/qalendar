@@ -21,7 +21,11 @@
           </slot>
 
           <template v-if="calendarEvent.url">
-            <slot name="link" :href="calendarEvent.url" :text="calendarEvent.title" />
+            <slot name="link" :href="calendarEvent.url" :text="calendarEvent.title">
+              <a :href="calendarEvent.url">
+                {{calendarEvent.title}}
+              </a>
+             </slot>
           </template>
 
           <span v-else>
@@ -40,7 +44,11 @@
 
         <div v-if="calendarEvent.url" class="event-flyout__row is-url">
           <font-awesome-icon :icon="icons.globe" />
-          <slot name="link" :href="calendarEvent.url" :text="calendarEvent.url" />
+          <slot name="link" :href="calendarEvent.url" :text="calendarEvent.url">
+            <a :href="calendarEvent.url">
+              {{calendarEvent.url}}
+            </a>
+          </slot>
         </div>
 
         <div v-if="calendarEvent.with" class="event-flyout__row is-with">
@@ -205,7 +213,7 @@ export default defineComponent({
           .backgroundColor;
       }
 
-      return this.colors[this.calendarEvent?.color || 'blue'];
+      return this.colors[this.calendarEvent?.color || 'blue'] || this.calendarEvent?.color;
     },
   },
 
